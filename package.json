@@ -1,0 +1,29 @@
+{
+  "name": "interview-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MERN interview practice, coding contests, and collaborative mock interviews.",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,green \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm --workspace server run dev",
+    "dev:client": "npm --workspace client run dev",
+    "build": "npm --workspace client run build",
+    "start": "npm --workspace server start",
+    "seed:admin": "npm --workspace server run seed:admin",
+    "seed:questions": "npm --workspace server run seed:questions",
+    "seed:problems": "npm --workspace server run seed:problems",
+    "seed:contests": "npm --workspace server run seed:contests",
+    "compact:history": "npm --workspace server run compact:history"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "overrides": {
+    "source-map-js": "1.2.2",
+    "shell-quote": "1.11.0"
+  }
+}
