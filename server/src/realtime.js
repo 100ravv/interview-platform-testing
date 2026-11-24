@@ -23,6 +23,7 @@ export function attachRealtime(server) {
     let windowStartedAt = Date.now();
     let eventCount = 0;
     let chatCount = 0;
+    const lastProctorEventAt = new Map();
     const allowEvent = (isChat = false) => {
       const now = Date.now();
       if (now - windowStartedAt >= 10_000) { windowStartedAt = now; eventCount = 0; chatCount = 0; }
@@ -66,6 +67,24 @@ export function attachRealtime(server) {
         }
       });
     }
+    socket.on('proctor:alert', async (payload) => {
+      const room = socket.data.meetingRoom;
+      const type = payload?.type;
+      const allowedTypes = new Set(['tab_hidden', 'gaze_away', 'face_missing', 'multiple_faces', 'camera_disabled']);
+      if (!room || !allowedTypes.has(type) || !allowEvent()) return;
+      const now = Date.now();
+      if (now - (lastProctorEventAt.get(type) || 0) < 5000) return;
+      lastProctorEventAt.set(type, now);
+      try {
+        const meetingId = room.slice('meeting:'.length);
+        const meeting = await Meeting.findById(meetingId).select('student interviewer status scheduledAt durationMinutes');
+        const userId = socket.data.user.id;
+        if (!meeting || meeting.status !== 'accepted' || !isWithinMeetingWindow(meeting) || String(meeting.student) !== userId) return;
+        const event = { type, participant: userId, participantName: socket.data.user.name, occurredAt: new Date(now) };
+        await Meeting.updateOne({ _id: meetingId }, { $push: { proctorEvents: { $each: [event], $slice: -100 } } });
+        socket.to(room).emit('proctor:alert', { ...event, participant: userId });
+      } catch { /* Proctoring alerts should not interrupt the call. */ }
+    });
     socket.on('room:leave', () => {
       if (socket.data.meetingRoom) { socket.to(socket.data.meetingRoom).emit('room:peer-left'); socket.leave(socket.data.meetingRoom); socket.data.meetingRoom = null; }
     });

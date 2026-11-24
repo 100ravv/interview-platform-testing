@@ -11,6 +11,7 @@ import contestRoutes from './routes/contests.js';
 import meetingRoutes from './routes/meetings.js';
 import analyticsRoutes from './routes/analytics.js';
 import notificationRoutes from './routes/notifications.js';
+import learningRoutes from './routes/learning.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
 export const app = express();
@@ -32,5 +33,6 @@ app.use('/api/contests', contestRoutes);
 app.use('/api/meetings', meetingRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/learning', learningRoutes);
 app.use(notFound);
 app.use(errorHandler);

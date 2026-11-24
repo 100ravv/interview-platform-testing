@@ -21,6 +21,7 @@ const present = (meeting) => ({
   student: meeting.student?.toSafeJSON ? meeting.student.toSafeJSON() : { id: String(meeting.student?._id), name: meeting.student?.name, email: meeting.student?.email },
   interviewer: meeting.interviewer?.toSafeJSON ? meeting.interviewer.toSafeJSON() : { id: String(meeting.interviewer?._id), name: meeting.interviewer?.name, email: meeting.interviewer?.email },
   requestedBy: String(meeting.requestedBy), evaluation: meeting.status === 'completed' ? meeting.evaluation : undefined,
+  proctorEvents: meeting.proctorEvents || [],
 });
 
 router.get('/', asyncHandler(async (req, res) => {

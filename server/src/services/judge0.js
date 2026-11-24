@@ -3,9 +3,9 @@ import { env } from '../config/env.js';
 let cachedLanguages = null;
 let languageCacheUntil = 0;
 const fallbackLanguages = [
-  { id: 63, name: 'JavaScript (Node.js 12.14.0)' },
-  { id: 71, name: 'Python (3.8.1)' },
   { id: 54, name: 'C++ (GCC 9.2.0)' },
+  { id: 62, name: 'Java (OpenJDK 13.0.1)' },
+  { id: 71, name: 'Python (3.8.1)' },
 ];
 
 function configuration() {
@@ -38,9 +38,9 @@ async function request(path, options = {}) {
 
 function supportedLanguages(languages) {
   const groups = [
-    { match: (name) => /\bnode\.?js\b|\bjavascript\b/i.test(name), preferredId: 63 },
-    { match: (name) => /\bpython\s*3\b/i.test(name), preferredId: 71 },
     { match: (name) => /\bc\+\+|\bgcc\s*c\+\+/i.test(name), preferredId: 54 },
+    { match: (name) => /^\s*java(?:\s|\(|$)/i.test(name), preferredId: 62 },
+    { match: (name) => /\bpython\s*3\b/i.test(name), preferredId: 71 },
   ];
   return groups.flatMap(({ match, preferredId }) => {
     const matches = languages.filter((language) => match(language.name));
@@ -56,7 +56,7 @@ export async function getLanguages() {
   const languages = await request('/languages');
   if (!Array.isArray(languages)) throw Object.assign(new Error('Judge0 returned an invalid language list.'), { statusCode: 502 });
   cachedLanguages = supportedLanguages(languages);
-  if (!cachedLanguages.length) throw Object.assign(new Error('Judge0 did not report JavaScript, Python 3, or C++ as available.'), { statusCode: 502 });
+  if (!cachedLanguages.length) throw Object.assign(new Error('Judge0 did not report Java, Python 3, or C++ as available.'), { statusCode: 502 });
   languageCacheUntil = Date.now() + 10 * 60 * 1000;
   return cachedLanguages;
 }

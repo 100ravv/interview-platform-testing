@@ -6,6 +6,13 @@ const evaluationSchema = new mongoose.Schema({
   evaluatedAt: { type: Date, default: null },
 }, { _id: false });
 
+const proctorEventSchema = new mongoose.Schema({
+  type: { type: String, enum: ['tab_hidden', 'gaze_away', 'face_missing', 'multiple_faces', 'camera_disabled'], required: true },
+  participant: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  participantName: { type: String, required: true, maxlength: 60 },
+  occurredAt: { type: Date, required: true },
+}, { _id: false });
+
 const meetingSchema = new mongoose.Schema({
   title: { type: String, required: true, trim: true, maxlength: 100 },
   scheduledAt: { type: Date, required: true, index: true },
@@ -17,6 +24,7 @@ const meetingSchema = new mongoose.Schema({
   startedAt: { type: Date, default: null },
   endedAt: { type: Date, default: null },
   evaluation: { type: evaluationSchema, default: () => ({}) },
+  proctorEvents: { type: [proctorEventSchema], default: [] },
 }, { timestamps: true, versionKey: false });
 
 meetingSchema.index({ student: 1, scheduledAt: 1 });

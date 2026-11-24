@@ -6,9 +6,9 @@ import './code.css';
 
 const difficulties = ['Easy', 'Medium', 'Hard'];
 const fallbackLanguages = [
-  { id: 63, name: 'JavaScript (Node.js 12.14.0)' },
-  { id: 71, name: 'Python (3.8.1)' },
   { id: 54, name: 'C++ (GCC 9.2.0)' },
+  { id: 62, name: 'Java (OpenJDK 13.0.1)' },
+  { id: 71, name: 'Python (3.8.1)' },
 ];
 const statusClass = (status = '') => status.toLowerCase().replaceAll(' ', '-');
 
@@ -30,7 +30,6 @@ export function ProblemListPage() {
 
 function starterCode(language = '') {
   const name = language.toLowerCase();
-  if (/javascript|\bnode\.?js\b/.test(name)) return 'const fs = require("fs");\nconst input = fs.readFileSync(0, "utf8").trim();\nconst values = input ? input.split(/\\s+/) : [];\n// Write your solution here\n';
   if (/\bpython\b/.test(name)) return 'import sys\n\ndata = sys.stdin.read().strip().split()\n# Write your solution here\n';
   if (/\bc\+\+|\bgcc\s*c\+\+/.test(name)) return '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // Read input from stdin and print the answer.\n    return 0;\n}\n';
   if (/\bjava\b/.test(name)) return 'import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        // Write your solution here\n    }\n}\n';
@@ -48,7 +47,7 @@ export function ProblemDetailPage() {
   useEffect(() => {
     api(`/code/problems/${slug}`).then((data) => setProblem(data.problem)).catch((problemError) => setError(problemError.message)).finally(() => setLoading(false));
     if (contestId) api(`/contests/${contestId}`).then((data) => setContest(data.contest)).catch((problemError) => setError(problemError.message));
-    api('/code/languages').then((data) => { setLanguages(data.languages); setExecutionAvailable(Boolean(data.executionAvailable)); const first = data.languages.find((item) => /javascript|node\.?js/i.test(item.name)) || data.languages[0]; if (first) { setLanguageId(String(first.id)); setSourceCode(starterCode(first.name)); } }).catch((problemError) => { setLanguages(fallbackLanguages); setLanguageId(String(fallbackLanguages[0].id)); setSourceCode(starterCode(fallbackLanguages[0].name)); setLanguageError(problemError.message); });
+    api('/code/languages').then((data) => { setLanguages(data.languages); setExecutionAvailable(Boolean(data.executionAvailable)); const first = data.languages[0]; if (first) { setLanguageId(String(first.id)); setSourceCode(starterCode(first.name)); } }).catch((problemError) => { setLanguages(fallbackLanguages); setLanguageId(String(fallbackLanguages[0].id)); setSourceCode(starterCode(fallbackLanguages[0].name)); setLanguageError(problemError.message); });
   }, [slug, contestId]);
   useEffect(() => {
     if (!submission || !['Queued', 'Processing'].includes(submission.status)) return undefined;

@@ -14,6 +14,7 @@ test('code submission validation limits the source and accepts run/submit modes'
 });
 
 test('seeded problems have unique slugs and both public and hidden tests', () => {
+  assert.equal(problemDocuments.length, 20);
   assert.equal(new Set(problemDocuments.map((problem) => problem.slug)).size, problemDocuments.length);
   for (const problem of problemDocuments) {
     assert.ok(problem.testCases.some((item) => item.visibility === 'public'));

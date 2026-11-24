@@ -17,6 +17,7 @@
     "seed:questions": "npm --workspace server run seed:questions",
     "seed:problems": "npm --workspace server run seed:problems",
     "seed:contests": "npm --workspace server run seed:contests",
+    "seed:learning": "npm --workspace server run seed:learning",
     "compact:history": "npm --workspace server run compact:history"
   },
   "devDependencies": {

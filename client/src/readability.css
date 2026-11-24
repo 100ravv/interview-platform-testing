@@ -1,0 +1,143 @@
+/* Shared readability pass: larger supporting text, clearer contrast, and roomier controls. */
+body { font-size: 16px; line-height: 1.55; }
+
+:is(.nav-item, .breadcrumbs, .topbar-date, .workspace-copy strong, .profile-copy strong) { font-size: 15px; }
+:is(.workspace-copy span, .profile-copy span, .welcome-row p, .banner-content p, .snapshot-text, .snapshot-metric span, .role-copy strong, .role-copy span, .role-note) { font-size: 14px; }
+:is(.nav-label, .section-kicker, .eyebrow, .banner-kicker, .tip-stars, .card-index) { font-size: 12px; }
+.sidebar-tip p { font-size: 13px; line-height: 1.6; }
+.welcome-row h1 { font-size: clamp(28px, 2.5vw, 34px); line-height: 1.2; }
+.banner-content h2 { font-size: 32px; }
+.section-heading h2, .panel-heading h2 { font-size: 19px; }
+.quick-card h3 { font-size: 17px; }
+.quick-card p, .card-link, .snapshot-trend, .role-tag { font-size: 14px; }
+.quick-card p, .snapshot-text { line-height: 1.65; }
+.snapshot-metric strong { font-size: 20px; }
+
+.auth-top, .auth-form label, .auth-sub, .auth-form input, .auth-form select, .form-error { font-size: 15px; }
+.secure-note, .auth-bottom, .story-footer { font-size: 14px; }
+.story-foot { font-size: 14px; }
+
+:is(.practice-breadcrumb, .practice-history-link, .back-link, .practice-intro > p, .setup-heading p, .setup-fields label, .setup-fields select, .practice-primary, .practice-secondary, .practice-note, .room-topic, .question-card form > label, .review-prompt, .review-answer p, .review-feedback, .review-lists strong, .review-lists p, .completion-card p, .offline-notice, .history-main strong, .history-main span, .history-status, .history-empty p) { font-size: 14px; }
+.practice-eyebrow, .session-state, .question-difficulty, .question-topic, .progress-copy, .review-title, .review-answer > span, .answer-meta { font-size: 12px; }
+.question-card h2 { font-size: 21px; line-height: 1.6; }
+.question-card textarea { font-size: 16px; line-height: 1.7; }
+.practice-note, .review-answer p, .review-feedback { line-height: 1.7; }
+.history-main strong { font-size: 15px; }
+
+:is(.code-eyebrow, .code-back, .code-intro p, .problem-statement, .statement-pane > p, .statement-pane li, .example-block, .editor-toolbar, .editor-actions, .result-summary, .test-result, .submission-row, .code-empty, .judge-warning, .contest-overview) { font-size: 14px; }
+.problem-statement, .statement-pane > p, .statement-pane li { line-height: 1.7; }
+.editor-body textarea { font-size: 15px; line-height: 1.7; }
+
+:is(.analytics-header .contest-overview, .analytics-intro p, .analytics-metrics article > span, .analytics-metrics article > small, .analytics-panel-heading a, .topic-row, .subject-row, .recommendation-card p, .recent-session-list, .analytics-empty) { font-size: 14px; }
+.analytics-panel-heading h2, .recommendation-card h3 { font-size: 19px; }
+.topic-row, .subject-row, .recent-session-list { line-height: 1.6; }
+
+:is(.meeting-header .contest-overview, .meeting-intro p, .meeting-form label, .meeting-form input, .meeting-form select, .meeting-form textarea, .meeting-row-top, .meeting-row > p, .meeting-row-time, .meeting-awaiting, .meeting-rating, .room-join-card p, .video-name, .video-placeholder span, .chat-message, .chat-message strong, .chat-message small, .chat-system, .chat-empty, .chat-form input) { font-size: 14px; }
+.meeting-row h3, .chat-heading strong { font-size: 18px; }
+.meeting-row > p, .room-join-card p, .chat-message p, .chat-empty { line-height: 1.65; }
+
+:is(.admin-intro p, .admin-counts article span, .admin-controls h2, .admin-search input, .admin-filters > select, .user-table td, .admin-user strong, .admin-user small, .admin-role, .admin-empty) { font-size: 14px; }
+.admin-user strong { font-size: 15px; }
+.user-table th, .admin-limit-note { font-size: 12px; }
+
+:is(button, a, input, select, textarea) { line-height: 1.45; }
+:is(button, a, input, select, textarea):focus-visible { outline: 3px solid #7564ce75; outline-offset: 2px; }
+
+@media (max-width: 650px) {
+  .welcome-row h1 { font-size: 27px; }
+  .banner-content h2 { font-size: 28px; }
+  .practice-intro h1 { font-size: 30px; }
+  .question-card { padding: 19px; }
+  .question-card h2 { font-size: 19px; }
+}
+
+.theme-control { position: relative; }
+.theme-trigger { width: 34px; height: 34px; border-radius: 8px; }
+.theme-trigger:hover { background: #f1eff9; color: #6655bd; }
+.theme-menu { position: absolute; z-index: 20; top: calc(100% + 9px); right: 0; display: grid; gap: 3px; width: 158px; padding: 6px; border: 1px solid #e5e5eb; border-radius: 10px; background: white; box-shadow: 0 12px 30px #26253020; }
+.theme-choice { display: flex; align-items: center; gap: 9px; min-height: 38px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; color: #494a54; text-align: left; cursor: pointer; }
+.theme-choice span { flex: 1; }
+.theme-choice:hover, .theme-choice-active { background: #f2f0fb; color: #6655bd; }
+
+html[data-theme="dark"] { color-scheme: dark; }
+html[data-theme="dark"] body,
+html[data-theme="dark"] .app-shell,
+html[data-theme="dark"] .main-area,
+html[data-theme="dark"] .practice-page,
+html[data-theme="dark"] .code-page,
+html[data-theme="dark"] .analytics-page,
+html[data-theme="dark"] .admin-page,
+html[data-theme="dark"] .meeting-page,
+html[data-theme="dark"] .learning-page { background: #111319; color: #eef0f6; }
+
+html[data-theme="dark"] :is(.sidebar, .topbar, .practice-header, .code-header, .analytics-header, .admin-header, .meeting-header, .learning-header, .workspace-switch, .panel, .quick-card, .setup-card, .question-card, .answer-review, .completion-card, .history-card, .analytics-panel, .recommendation-card, .recent-sessions, .admin-users-panel, .admin-counts article, .meeting-panel, .meeting-row, .room-video-panel, .chat-panel, .statement-pane, .editor-pane, .result-card, .theme-menu, .learning-controls, .learning-card, .learning-empty) {
+  border-color: #333640;
+  background-color: #1b1e26;
+  color: #eef0f6;
+}
+html[data-theme="dark"] .topbar,
+html[data-theme="dark"] .practice-header,
+html[data-theme="dark"] .code-header,
+html[data-theme="dark"] .analytics-header,
+html[data-theme="dark"] .admin-header,
+html[data-theme="dark"] .meeting-header,
+html[data-theme="dark"] .learning-header { background-color: #171920; }
+
+html[data-theme="dark"] :is(h1, h2, h3, h4, strong, .brand, .practice-brand, .code-brand, .role-copy strong, .workspace-copy strong, .profile-copy strong, .question-card h2, .review-prompt, .meeting-row h3, .chat-heading strong, .admin-intro h1, .recommendation-card h3, .learning-intro h1, .learning-card h2, .learning-empty strong, .learning-results strong) { color: #f2f3f8; }
+html[data-theme="dark"] :is(p, small, label, .nav-item, .breadcrumbs, .topbar-date, .workspace-copy span, .profile-copy span, .welcome-row p, .quick-card p, .snapshot-text, .snapshot-metric span, .role-copy span, .role-note, .practice-breadcrumb, .practice-intro > p, .setup-heading p, .setup-fields label, .practice-note, .room-topic, .review-answer p, .review-feedback, .history-main span, .problem-statement, .analytics-intro p, .topic-row, .subject-row, .recommendation-card p, .recent-session-list, .meeting-help, .meeting-row > p, .meeting-row-time, .chat-empty, .admin-intro p, .admin-user small, .user-table td, .code-back, .code-crumb, .code-history, .code-intro p, .learning-intro > p, .learning-storage-note, .learning-subject, .learning-card > p, .learning-results, .learning-card-foot > span) { color: #b8bbc7; }
+html[data-theme="dark"] :is(a, .card-link, .snapshot-trend, .practice-history-link, .back-link, .code-history, .analytics-panel-heading a, .learning-card-foot > a, .learning-workspace) { color: #b5a9ff; }
+html[data-theme="dark"] :is(.nav-item.nav-active, .theme-choice-active, .theme-choice:hover) { background-color: #302b48; color: #d0c8ff; }
+html[data-theme="dark"] :is(input, select, textarea, .question-card textarea, .setup-fields select, .meeting-form input, .meeting-form select, .meeting-form textarea, .evaluation-form textarea, .evaluation-form select, .chat-form input, .admin-search input) { border-color: #414550; background-color: #14161c; color: #f0f1f5; }
+html[data-theme="dark"] :is(input, select, textarea)::placeholder { color: #858a98; }
+html[data-theme="dark"] :is(.snapshot-footer, .meeting-row, .chat-heading, .chat-form, .evaluation-form, .user-table th, .user-table td, .history-card, .test-result, .submission-row) { border-color: #333640; }
+html[data-theme="dark"] :is(.snapshot-icon, .quick-icon, .setup-symbol, .room-camera-icon, .history-icon, .metric-icon, .recommendation-icon) { background-color: #302b48; color: #c1b7ff; }
+html[data-theme="dark"] :is(.role-tag, .question-difficulty, .session-state, .score-pill, .received-note, .chat-own) { background-color: #302b48; color: #d0c8ff; }
+html[data-theme="dark"] :is(.review-answer, .review-lists > div, .analytics-empty, .code-empty, .admin-empty, .chat-message, .contest-lock) { border-color: #333640; background-color: #171920; color: #c4c6d0; }
+html[data-theme="dark"] .banner { border-color: #49445e; background: #242230; }
+html[data-theme="dark"] .button-outline,
+html[data-theme="dark"] .practice-secondary,
+html[data-theme="dark"] .refresh-button,
+html[data-theme="dark"] .quiet-button { border-color: #414550; background-color: #22252e; color: #e4e5ec; }
+html[data-theme="dark"] .form-error { border-color: #6d3d41; background-color: #321f23; color: #ffb9b5; }
+html[data-theme="dark"] .offline-notice { border-color: #5c5137; background-color: #302b20; color: #e4cc8d; }
+html[data-theme="dark"] .meeting-notice { border-color: #31533e; background-color: #1d3025; color: #a7dfb8; }
+html[data-theme="dark"] .theme-choice { color: #e3e5ed; }
+html[data-theme="dark"] .theme-choice:hover,
+html[data-theme="dark"] .theme-choice-active { background-color: #302b48; color: #d0c8ff; }
+html[data-theme="dark"] .sidebar-tip { border-color: #373444; background-color: #211f2b; }
+html[data-theme="dark"] .sidebar-tip p,
+html[data-theme="dark"] .page-footer,
+html[data-theme="dark"] .section-kicker,
+html[data-theme="dark"] .nav-label { color: #aeb1bd; }
+html[data-theme="dark"] .line-numbers { background-color: #171920; color: #858a98; }
+html[data-theme="dark"] pre { color: #e2e4ed; }
+html[data-theme="dark"] .mobile-scrim { background: #0009; }
+html[data-theme="dark"] .theme-trigger:hover { background-color: #302b48; color: #d0c8ff; }
+html[data-theme="dark"] .brand,
+html[data-theme="dark"] .practice-brand,
+html[data-theme="dark"] .code-brand { color: #f2f3f8; }
+html[data-theme="dark"] .auth-layout,
+html[data-theme="dark"] .auth-panel { background-color: #171920; color: #eef0f6; }
+html[data-theme="dark"] .auth-card h2,
+html[data-theme="dark"] .auth-form label { color: #eef0f6; }
+html[data-theme="dark"] .auth-sub,
+html[data-theme="dark"] .auth-top,
+html[data-theme="dark"] .auth-bottom,
+html[data-theme="dark"] .secure-note { color: #b8bbc7; }
+html[data-theme="dark"] :is(.problem-tile, .problem-controls, .submission-row, .saved-code, .example-block, .editor-toolbar, .editor-actions, .result-summary, .test-result, .meeting-list-heading, .chat-heading, .evaluation-form, .history-card, .answer-review) { background-color: #1b1e26; color: #eef0f6; }
+html[data-theme="dark"] :is(.statement-heading h1, .problem-tile h2, .saved-code h2, .saved-code pre, .result-heading, .test-result strong, .submission-copy strong, .meeting-panel h2, .room-heading h1, .evaluation-form h2) { color: #f2f3f8; }
+html[data-theme="dark"] :is(.problem-tile p, .problem-count-detail, .problem-tile-foot, .result-foot, .test-result span, .submission-copy span, .meeting-row-top, .meeting-awaiting, .meeting-rating, .chat-heading span, .video-placeholder span) { color: #b8bbc7; }
+html[data-theme="dark"] :is(.problem-tile, .example-block, .saved-code, .editor-toolbar, .test-result, .submission-row, .meeting-list-heading, .chat-heading, .evaluation-form) { border-color: #333640; }
+html[data-theme="dark"] .line-numbers { border-color: #333640; }
+html[data-theme="dark"] .video-tile { background-color: #090a0e; }
+html[data-theme="dark"] .video-placeholder { color: #e0e1e9; }
+html[data-theme="dark"] .role-tag { color: #d0c8ff; }
+html[data-theme="dark"] .nav-item:not(.nav-active):hover { background-color: #242630; color: #eef0f6; }
+html[data-theme="dark"] .icon-button { color: #c2c4ce; }
+html[data-theme="dark"] .icon-button:hover { background-color: #292c36; color: #f3f3f8; }
+html[data-theme="dark"] .notification-popover { border-color: #333640; background-color: #1b1e26; color: #eef0f6; }
+html[data-theme="dark"] .notification-item { border-color: #333640; color: #e8e9ef; }
+html[data-theme="dark"] .notification-item small,
+html[data-theme="dark"] .notification-item time,
+html[data-theme="dark"] .notification-empty { color: #b8bbc7; }
+html[data-theme="dark"] .notification-item:hover { background-color: #252832; }
